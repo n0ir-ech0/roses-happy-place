@@ -2,323 +2,292 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <meta name="description" content="Rose's Happy Place - A magical corner of the internet made just for Rose 🌹" />
-  <title>Rose's Happy Place 🌹</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌹 Rose's Happy Place 🌹</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- FLOATING ELEMENTS -->
-  <div class="floating-elements" id="floatingElements" aria-hidden="true"></div>
+  <!-- Floating Background Elements -->
+  <div id="bg-elements" aria-hidden="true"></div>
 
-  <!-- NAV DOTS -->
-  <nav class="page-nav" aria-label="Page navigation">
-    <button class="nav-dot active" data-page="0" aria-label="Page 1: Welcome"></button>
-    <button class="nav-dot" data-page="1" aria-label="Page 2: Happiness Button"></button>
-    <button class="nav-dot" data-page="2" aria-label="Page 3: Compliments"></button>
-    <button class="nav-dot" data-page="3" aria-label="Page 4: Laugh Lab"></button>
-    <button class="nav-dot" data-page="4" aria-label="Page 5: Queen Certificate"></button>
-    <button class="nav-dot" data-page="5" aria-label="Page 6: Confidence"></button>
-    <button class="nav-dot" data-page="6" aria-label="Page 7: Note from Varun"></button>
-    <button class="nav-dot" data-page="7" aria-label="Page 8: Special"></button>
-    <button class="nav-dot" data-page="8" aria-label="Page 9: Secret"></button>
-    <button class="nav-dot" data-page="9" aria-label="Page 10: Happiness Jar"></button>
-    <button class="nav-dot" data-page="10" aria-label="Page 11: Dear Rose"></button>
+  <!-- Navigation -->
+  <nav class="main-nav" id="main-nav">
+    <div class="nav-logo">🌹 Rose's Happy Place</div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">☰</button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#" onclick="showPage('welcome')">🏠 Home</a></li>
+      <li><a href="#" onclick="showPage('happiness')">❤️ Smile</a></li>
+      <li><a href="#" onclick="showPage('compliments')">✨ Compliments</a></li>
+      <li><a href="#" onclick="showPage('laugh')">😂 Laugh Lab</a></li>
+      <li><a href="#" onclick="showPage('certificate')">👑 Certificate</a></li>
+      <li><a href="#" onclick="showPage('confidence')">💪 Confidence</a></li>
+      <li><a href="#" onclick="showPage('friendship')">🌸 From Varun</a></li>
+      <li><a href="#" onclick="showPage('beauty')">🌙 Beauty</a></li>
+      <li><a href="#" onclick="showPage('secret')">⚠️ Secret</a></li>
+      <li><a href="#" onclick="showPage('jar')">🫙 Happy Jar</a></li>
+      <li><a href="#" onclick="showPage('final')">💌 Dear Rose</a></li>
+    </ul>
   </nav>
 
-  <!-- ======================== PAGE 1: WELCOME ======================== -->
-  <section class="page page-welcome active" id="page0">
+  <!-- PAGE 1: WELCOME -->
+  <div class="page active" id="page-welcome">
     <div class="slideshow-container">
-      <div class="slide" id="slide0"><img src="rose1.jpg" alt="Rose" loading="eager" /></div>
-      <div class="slide" id="slide1"><img src="rose2.jpg" alt="Rose" loading="lazy" /></div>
-      <div class="slide" id="slide2"><img src="rose3.jpg" alt="Rose" loading="lazy" /></div>
+      <div class="slide active" style="background-image:url('rose1.jpg')"></div>
+      <div class="slide" style="background-image:url('rose2.jpg')"></div>
+      <div class="slide" style="background-image:url('rose3.jpg')"></div>
       <div class="slide-overlay"></div>
     </div>
     <div class="welcome-content glass-card">
-      <div class="badge">✨ International Association of Cute Things™ Approved ✨</div>
-      <h1 class="title-main">Hey Rose 🌹</h1>
-      <p class="subtitle">Welcome to your little corner of the internet.</p>
-      <p class="subtitle-small">This website was officially approved by the<br/><em>International Association of Cute Things™</em></p>
-      <button class="btn-primary" id="enterBtn" onclick="goToPage(1)">Enter ❤️</button>
-    </div>
-  </section>
-
-  <!-- ======================== PAGE 2: EMERGENCY HAPPINESS ======================== -->
-  <section class="page page-happiness" id="page1">
-    <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">🚨</span>
-        <h2>Emergency Happiness Station</h2>
-        <p class="page-desc">One button. Infinite smiles.</p>
+      <div class="welcome-badge">🌸 International Association of Cute Things™ 🌸</div>
+      <h1 class="welcome-heading typewriter">Hey Rose 🌹</h1>
+      <p class="welcome-sub">Welcome to your little corner of the internet.</p>
+      <p class="welcome-text">"This website was approved by the<br/><strong>International Association of Cute Things™</strong>"</p>
+      <div class="daily-bits">
+        <div class="daily-bit">
+          <span class="daily-label">✨ Compliment of the Day</span>
+          <span class="daily-val" id="daily-compliment"></span>
+        </div>
+        <div class="daily-bit">
+          <span class="daily-label">😂 Joke of the Day</span>
+          <span class="daily-val" id="daily-joke"></span>
+        </div>
+        <div class="daily-bit">
+          <span class="daily-label">💬 Quote of the Day</span>
+          <span class="daily-val" id="daily-quote"></span>
+        </div>
       </div>
-      <div class="happiness-zone">
-        <button class="btn-emergency" id="happinessBtn" aria-label="Get a smile">
-          <span class="btn-emoji">❤️</span>
-          <span>I NEED A SMILE</span>
-          <span class="btn-emoji">❤️</span>
+      <button class="btn-primary btn-enter" onclick="showPage('happiness')">Enter ❤️</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2: EMERGENCY HAPPINESS -->
+  <div class="page" id="page-happiness">
+    <div class="page-inner">
+      <h2 class="page-title glow-text">Emergency Happiness Station 🚨</h2>
+      <p class="page-subtitle">One click and your smile is guaranteed</p>
+      <div class="happiness-card glass-card big-card">
+        <button class="btn-emergency" id="smile-btn" onclick="getSmile()">
+          <span class="btn-icon">❤️</span>
+          <span class="btn-text">I NEED A SMILE</span>
+          <span class="btn-icon">❤️</span>
         </button>
-        <div class="message-box glass-card" id="happinessMessage" aria-live="polite">
-          <p>Press the button! ☝️</p>
+        <div class="message-display" id="smile-msg"></div>
+        <div class="photo-mini">
+          <img src="rose1.jpg" class="mini-photo" alt="Rose" id="smile-photo"/>
         </div>
       </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(0)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(2)">Next →</button>
+      <div class="extra-btns">
+        <button class="btn-secondary" onclick="surpriseMe()">🎲 Surprise Me</button>
+        <button class="btn-secondary" onclick="moodBooster()">🌈 Mood Booster</button>
+      </div>
+      <div class="message-display" id="surprise-msg" style="margin-top:1rem"></div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: DAILY COMPLIMENT -->
+  <div class="page" id="page-compliments">
+    <div class="page-inner">
+      <h2 class="page-title glow-text">✨ Compliment Generator ✨</h2>
+      <p class="page-subtitle">Because you deserve to hear nice things</p>
+      <div class="compliment-card glass-card big-card">
+        <div class="compliment-rose-img">
+          <img src="rose2.jpg" alt="Rose" class="circle-photo"/>
+        </div>
+        <div class="compliment-display" id="compliment-display">
+          <span class="compliment-placeholder">Press the button and receive your compliment 🌸</span>
+        </div>
+        <button class="btn-primary" onclick="getCompliment()">Generate Compliment 💫</button>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 3: DAILY COMPLIMENT ======================== -->
-  <section class="page page-compliment" id="page2">
+  <!-- PAGE 4: LAUGH LAB -->
+  <div class="page" id="page-laugh">
     <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">💌</span>
-        <h2>Daily Compliment Generator</h2>
-        <p class="page-desc">Freshly brewed compliments, just for Rose.</p>
+      <h2 class="page-title glow-text">😂 ROSE'S LAUGH LAB 😂</h2>
+      <p class="page-subtitle">Prescribing giggles since forever</p>
+      <div class="laugh-gif-wrapper glass-card">
+        <img src="funny.gif" alt="Funny GIF" class="funny-gif" />
       </div>
-      <div class="compliment-zone">
-        <div class="compliment-card glass-card" id="complimentCard" aria-live="polite">
-          <div class="compliment-inner">
-            <span class="compliment-deco">✨</span>
-            <p id="complimentText">Click below for your compliment 💕</p>
-            <span class="compliment-deco">✨</span>
+      <div class="laugh-btns">
+        <button class="btn-laugh" onclick="getJoke('joke')">🤣 Emergency Joke</button>
+        <button class="btn-laugh" onclick="getJoke('icecream')">🍦 Emergency Ice Cream</button>
+        <button class="btn-laugh" onclick="getJoke('confidence')">💅 Emergency Confidence</button>
+        <button class="btn-laugh" onclick="getJoke('chaos')">🎭 Emergency Chaos</button>
+        <button class="btn-laugh" onclick="getJoke('laugh')">😂 Laugh Again</button>
+      </div>
+      <div class="joke-display glass-card" id="joke-display"></div>
+    </div>
+  </div>
+
+  <!-- PAGE 5: QUEEN CERTIFICATE -->
+  <div class="page" id="page-certificate">
+    <div class="page-inner">
+      <h2 class="page-title glow-text">👑 Official Certificate 👑</h2>
+      <div class="certificate-wrapper glass-card" id="certificate">
+        <div class="cert-particles" id="cert-particles"></div>
+        <div class="cert-crown">
+          <div class="crown-anim">👑</div>
+        </div>
+        <div class="cert-border">
+          <div class="cert-title">✦ OFFICIAL CERTIFICATE ✦</div>
+          <div class="cert-sub">This certifies that</div>
+          <div class="cert-name">ROSE</div>
+          <div class="cert-desc">is officially a Queen 👑</div>
+          <div class="cert-divider">— ✦ — ✦ — ✦ —</div>
+          <div class="cert-details">
+            <div class="cert-detail"><span class="cert-label">Valid Until:</span><span class="cert-val">Forever 🌸</span></div>
+            <div class="cert-detail"><span class="cert-label">Renewal Fee:</span><span class="cert-val">1 Ice Cream 🍦</span></div>
           </div>
+          <div class="cert-seal">🌹</div>
+          <div class="cert-signature">Certified by the Universe</div>
         </div>
-        <button class="btn-primary" id="complimentBtn">Give me a compliment 💖</button>
       </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(1)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(3)">Next →</button>
-      </div>
+      <button class="btn-primary" onclick="launchConfetti()">🎉 Celebrate! (Confetti!)</button>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 4: LAUGH LAB ======================== -->
-  <section class="page page-laugh" id="page3">
+  <!-- PAGE 6: CONFIDENCE -->
+  <div class="page" id="page-confidence">
     <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">🧪</span>
-        <h2>Rose's Laugh Lab</h2>
-        <p class="page-desc">Science confirms: laughter is required.</p>
-      </div>
-      <div class="gif-container">
-        <img src="funny.gif" alt="Funny animation" class="funny-gif" loading="lazy" />
-      </div>
-      <div class="laugh-buttons">
-        <button class="btn-lab" data-type="joke">😂 Emergency Joke</button>
-        <button class="btn-lab" data-type="icecream">🍦 Emergency Ice Cream</button>
-        <button class="btn-lab" data-type="confidence">💪 Emergency Confidence</button>
-        <button class="btn-lab" data-type="chaos">🎉 Emergency Chaos</button>
-      </div>
-      <div class="message-box glass-card" id="laughMessage" aria-live="polite">
-        <p>Pick your emergency! 👆</p>
-      </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(2)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(4)">Next →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== PAGE 5: QUEEN CERTIFICATE ======================== -->
-  <section class="page page-queen" id="page4">
-    <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">👑</span>
-        <h2>The Royal Chamber</h2>
-        <p class="page-desc">Your official credentials.</p>
-      </div>
-      <div class="certificate glass-card" role="img" aria-label="Official Queen Rose Certificate">
-        <div class="cert-crown" aria-hidden="true">👑</div>
-        <div class="cert-stars" aria-hidden="true">⭐ ⭐ ⭐</div>
-        <p class="cert-label">OFFICIAL CERTIFICATE</p>
-        <p class="cert-body">This certifies that</p>
-        <h3 class="cert-name">ROSE</h3>
-        <p class="cert-body">is officially a</p>
-        <p class="cert-title">Queen 👑</p>
-        <div class="cert-divider"></div>
-        <p class="cert-small">Valid Until: <strong>Forever</strong></p>
-        <p class="cert-small">Renewal Fee: <strong>1 Ice Cream 🍦</strong></p>
-        <p class="cert-small cert-signed">Signed: The Universe ✨</p>
-      </div>
-      <button class="btn-primary" id="confettiBtn">🎉 Celebrate!</button>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(3)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(5)">Next →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== PAGE 6: CONFIDENCE ======================== -->
-  <section class="page page-confidence" id="page5">
-    <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">✨</span>
-        <h2>For the Days You Doubt Yourself</h2>
-        <p class="page-desc">A reminder from someone who believes in you.</p>
-      </div>
+      <h2 class="page-title glow-text">✨ FOR THE DAYS YOU DOUBT YOURSELF ✨</h2>
+      <p class="page-subtitle">Read these slowly. Breathe.</p>
       <div class="confidence-grid">
-        <div class="conf-card glass-card">
-          <p>You don't need to have everything figured out. Nobody does. You just need to keep going — and you already are. 🌸</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>Progress is still progress, even when it's invisible. Even on the slow days, you are moving forward. 💫</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>You've survived every single difficult day so far. That's a 100% success rate. Don't forget that. 💪</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>Your value doesn't decrease because you had a bad day. The sun is still the sun even when it's cloudy. ☀️</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>You are allowed to take up space. You are allowed to be proud of yourself. You are allowed to be enough. 🌺</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>Other people's opinions of you are none of your business. You know who you are. A Queen doesn't need approval. 👑</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>Rest is not giving up. Resting is recharging. Even queens need sleep. You deserve rest. 🌙</p>
-        </div>
-        <div class="conf-card glass-card">
-          <p>You are doing better than you think. You always have been. And you always will be. ✨</p>
-        </div>
+        <div class="conf-card glass-card" style="--delay:0s">You don't need to have everything figured out.</div>
+        <div class="conf-card glass-card" style="--delay:.1s">Progress is still progress, no matter how small.</div>
+        <div class="conf-card glass-card" style="--delay:.2s">You've survived every difficult day so far. That's 100%.</div>
+        <div class="conf-card glass-card" style="--delay:.3s">Your value doesn't decrease because you had a bad day.</div>
+        <div class="conf-card glass-card" style="--delay:.4s">You're stronger than your thoughts tell you.</div>
+        <div class="conf-card glass-card" style="--delay:.5s">Rest is not giving up. Rest is part of winning.</div>
+        <div class="conf-card glass-card" style="--delay:.6s">You are allowed to take up space and shine brightly.</div>
+        <div class="conf-card glass-card" style="--delay:.7s">Being kind to yourself is not weakness. It's wisdom.</div>
+        <div class="conf-card glass-card" style="--delay:.8s">You don't have to be perfect to be worthy of love.</div>
+        <div class="conf-card glass-card" style="--delay:.9s">Today is hard. But you've handled hard before.</div>
       </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(4)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(6)">Next →</button>
+      <div class="conf-photo-row">
+        <img src="rose3.jpg" class="conf-photo" alt="Rose"/>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 7: NOTE FROM VARUN ======================== -->
-  <section class="page page-varun" id="page6">
+  <!-- PAGE 7: FRIENDSHIP -->
+  <div class="page" id="page-friendship">
     <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">🌸</span>
-        <h2>A Note from Varun</h2>
-        <p class="page-desc">Written with full sincerity.</p>
-      </div>
-      <div class="letter-card glass-card">
-        <p class="letter-text">Hey Rose,</p>
-        <p class="letter-text">Thank you for being you. The world is genuinely, measurably, provably a better place because you're in it. That's not flattery — that's just a fact.</p>
-        <p class="letter-text">You have helped more people than you realize. You've made people smile without even trying. You've given others the courage to keep going just by being yourself.</p>
-        <p class="letter-text">Never underestimate how much your smile matters. Never underestimate how much <em>you</em> matter.</p>
-        <p class="letter-text">On the days things feel heavy — come back here. This little corner of the internet was built exactly for those moments.</p>
-        <p class="letter-text">You deserve happiness, warmth, and all the ice cream. 🍦</p>
-        <p class="letter-sig">With all the good vibes,<br /><strong>Varun ❤️</strong></p>
-      </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(5)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(7)">Next →</button>
+      <h2 class="page-title glow-text">🌸 A NOTE FROM VARUN 🌸</h2>
+      <div class="friendship-card glass-card big-card">
+        <div class="friendship-inner">
+          <p>Thank you for being you.</p>
+          <p>The world is genuinely lucky you're in it.</p>
+          <p>You've helped more people than you'll ever realize.</p>
+          <p>Never underestimate how much your smile matters — it truly does.</p>
+          <p>No matter what happens, you deserve every good thing that comes your way.</p>
+          <p>You don't have to earn your happiness. You already belong here.</p>
+          <p>I'm glad you exist, Rose. Genuinely, truly glad.</p>
+        </div>
+        <div class="friendship-photos">
+          <img src="rose1.jpg" alt="Rose" class="friend-photo"/>
+          <img src="rose2.jpg" alt="Rose" class="friend-photo"/>
+          <img src="rose3.jpg" alt="Rose" class="friend-photo"/>
+        </div>
+        <div class="friendship-sig">— Varun, with all the good vibes 🌸</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 8: SPECIAL ======================== -->
-  <section class="page page-special" id="page7">
-    <div class="page-inner">
-      <div class="moon-scene" aria-hidden="true">
-        <div class="moon"></div>
-        <div class="stars-layer" id="starsLayer"></div>
+  <!-- PAGE 8: BEAUTY PAGE -->
+  <div class="page page-beauty" id="page-beauty">
+    <div class="moon-bg" id="moon-bg">
+      <div class="moon-glow"></div>
+    </div>
+    <div class="moon-particles" id="moon-particles"></div>
+    <div class="page-inner beauty-inner">
+      <div class="beauty-gif-wrapper">
+        <img src="funny.gif" alt="Beautiful" class="beauty-gif"/>
       </div>
-      <div class="special-gif-wrap">
-        <img src="funny.gif" alt="A little something special" class="special-gif" loading="lazy" />
-      </div>
-      <div class="special-card glass-card">
-        <h2 class="special-heading">Intha andhanga unnav endi ROSE</h2>
-        <p class="special-text">
-          The Moon will feel jealous that you are hanging out with Earth —<br />
-          after all, he was following Earth his whole life...<br /><br />
-          but Earth chose <em>you</em>. 🌙✨
+      <div class="beauty-card glass-card big-card">
+        <h2 class="beauty-heading">Intha andhanga unnav endi ROSE</h2>
+        <p class="beauty-text">
+          Moon will feel jealous that you are hanging out with earth,<br/><br/>
+          after all he was following earth his whole life<br/><br/>
+          but earth chose you. 🌙
         </p>
-      </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(6)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(8)">Next →</button>
+        <div class="beauty-glow-ring"></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 9: SECRET ======================== -->
-  <section class="page page-secret" id="page8">
+  <!-- PAGE 9: SECRET PAGE -->
+  <div class="page" id="page-secret">
     <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">🔒</span>
-        <h2>Absolutely Nothing to See Here</h2>
-        <p class="page-desc">Definitely do not press the button below.</p>
+      <h2 class="page-title glow-text">You Found It 🫢</h2>
+      <div class="secret-card glass-card big-card">
+        <button class="btn-danger" id="secret-btn" onclick="triggerSecret()">
+          ⚠️ DO NOT PRESS ⚠️
+        </button>
+        <div class="secret-result" id="secret-result"></div>
       </div>
-      <div class="secret-zone">
-        <button class="btn-warning" id="secretBtn">⚠️ DO NOT PRESS ⚠️</button>
-        <div class="secret-reveal glass-card" id="secretReveal" hidden>
-          <div class="secret-badge">🏆 ROSE PREMIUM EDITION UNLOCKED 🏆</div>
-          <div class="achievements">
-            <div class="achievement">✨ Too Cute</div>
-            <div class="achievement">✨ Too Cool</div>
-            <div class="achievement">✨ Too Awesome</div>
-            <div class="achievement">✨ Queen Energy</div>
-            <div class="achievement">✨ Ice Cream Certified</div>
+    </div>
+  </div>
+
+  <!-- PAGE 10: HAPPY JAR -->
+  <div class="page" id="page-jar">
+    <div class="page-inner">
+      <h2 class="page-title glow-text">🫙 The Happy Jar 🫙</h2>
+      <p class="page-subtitle">Open it whenever you need a little something</p>
+      <div class="jar-container glass-card big-card">
+        <div class="jar-visual" onclick="openJar()">
+          <div class="jar-body">
+            <div class="jar-lid" id="jar-lid">🫙</div>
+            <div class="jar-shine"></div>
           </div>
         </div>
-      </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(7)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(9)">Next →</button>
+        <button class="btn-primary" onclick="openJar()">Open Happiness Jar 🌸</button>
+        <div class="jar-note" id="jar-note"></div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- ======================== PAGE 10: HAPPINESS JAR ======================== -->
-  <section class="page page-jar" id="page9">
-    <div class="page-inner">
-      <div class="page-header">
-        <span class="page-icon">🫙</span>
-        <h2>The Happiness Jar</h2>
-        <p class="page-desc">Open it whenever you need a little something.</p>
-      </div>
-      <div class="jar-zone">
-        <div class="jar-visual" aria-hidden="true">🫙</div>
-        <button class="btn-primary" id="jarBtn">Open Happiness Jar ✨</button>
-        <div class="jar-note glass-card" id="jarNote" aria-live="polite">
-          <p>Something good is waiting inside... 💛</p>
-        </div>
-      </div>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(8)">← Back</button>
-        <button class="btn-nav" onclick="goToPage(10)">Next →</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ======================== PAGE 11: DEAR ROSE ======================== -->
-  <section class="page page-final" id="page10">
-    <div class="page-inner">
-      <div class="final-card glass-card">
-        <h2 class="final-title">🌹 Dear Rose 🌹</h2>
+  <!-- PAGE 11: FINAL PAGE -->
+  <div class="page page-final" id="page-final">
+    <div class="final-hearts" id="final-hearts"></div>
+    <div class="page-inner final-inner">
+      <div class="final-card glass-card big-card">
+        <div class="final-rose">🌹</div>
+        <h2 class="final-heading">Dear Rose</h2>
         <div class="final-message">
-          <p>Whenever you feel low,<br />stressed,<br />overwhelmed,<br />or simply need a smile...</p>
-          <p class="final-emphasis">come back here.</p>
-          <p>You are important.</p>
-          <p>You are loved.</p>
-          <p>You are stronger than you think.</p>
+          <p>Whenever you feel sad,</p>
+          <p>stressed,</p>
+          <p>overwhelmed,</p>
+          <p>tired,</p>
+          <p>or simply need a smile...</p>
+          <br/>
+          <p class="final-big">Come back here.</p>
+          <br/>
+          <p>You are <strong>important</strong>.</p>
+          <p>You are <strong>loved</strong>.</p>
+          <p>You are <strong>stronger than you think</strong>.</p>
+          <br/>
           <p>You bring light into places you don't even notice.</p>
+          <br/>
           <p>And no matter what happens,</p>
-          <p class="final-queen">you will always be <strong>Queen Rose 👑</strong></p>
+          <p class="final-queen">you will always be Queen Rose 👑</p>
         </div>
-        <p class="final-sig">— Varun ❤️</p>
-      </div>
-      <button class="btn-primary" onclick="goToPage(0)">🌹 Start Over</button>
-      <div class="page-nav-btns">
-        <button class="btn-nav" onclick="goToPage(9)">← Back</button>
+        <div class="final-sig">— Varun ❤️</div>
+        <div class="final-photo-row">
+          <img src="rose1.jpg" alt="Rose" class="final-photo" />
+          <img src="rose2.jpg" alt="Rose" class="final-photo" />
+          <img src="rose3.jpg" alt="Rose" class="final-photo" />
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- CONFETTI CANVAS -->
-  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+  <!-- Confetti Canvas -->
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
 
   <script src="script.js"></script>
 </body>
