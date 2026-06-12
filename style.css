@@ -1,0 +1,1090 @@
+/* =============================================
+   🌹 ROSE'S HAPPY PLACE — STYLE.CSS 🌹
+   ============================================= */
+
+:root {
+  --pink:       #f9a8d4;
+  --pink-deep:  #ec4899;
+  --lavender:   #c4b5fd;
+  --lavender-d: #7c3aed;
+  --peach:      #fdba74;
+  --peach-d:    #fb923c;
+  --rose-gold:  #e8a0a0;
+  --white:      #ffffff;
+  --cream:      #fff5f7;
+  --text-dark:  #3d2a3e;
+  --text-mid:   #7c5a7e;
+  --glass-bg:   rgba(255,255,255,0.18);
+  --glass-bd:   rgba(255,255,255,0.35);
+  --shadow:     0 8px 40px rgba(236,72,153,0.18);
+  --shadow-lg:  0 16px 64px rgba(124,58,237,0.18);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #1a0025;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* =============================================
+   ANIMATED GRADIENT BACKGROUND
+   ============================================= */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #2d0040 0%,
+    #3d0050 15%,
+    #1a0035 30%,
+    #2a0045 45%,
+    #380050 60%,
+    #1e0038 75%,
+    #2d0042 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 14s ease infinite;
+  z-index: -10;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(249,168,212,0.12) 0%, transparent 55%),
+              radial-gradient(ellipse at 80% 20%, rgba(196,181,253,0.10) 0%, transparent 50%),
+              radial-gradient(ellipse at 60% 80%, rgba(253,186,116,0.08) 0%, transparent 50%);
+  z-index: -9;
+  animation: radialPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes radialPulse {
+  0%   { opacity: .6; }
+  100% { opacity: 1; }
+}
+
+/* =============================================
+   FLOATING BG ELEMENTS
+   ============================================= */
+#bg-elements {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.floater {
+  position: absolute;
+  animation: floatUp linear infinite;
+  opacity: 0;
+  user-select: none;
+  font-size: 1.4rem;
+}
+@keyframes floatUp {
+  0%   { transform: translateY(110vh) rotate(0deg) scale(.7); opacity: 0; }
+  10%  { opacity: .7; }
+  90%  { opacity: .5; }
+  100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
+}
+@keyframes floatSway {
+  0%   { transform: translateY(110vh) translateX(0px) rotate(0deg); opacity: 0; }
+  10%  { opacity: .8; }
+  50%  { transform: translateY(60vh) translateX(30px) rotate(180deg); }
+  90%  { opacity: .5; }
+  100% { transform: translateY(-10vh) translateX(-20px) rotate(360deg); opacity: 0; }
+}
+.floater.sway { animation-name: floatSway; }
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.main-nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .7rem 1.5rem;
+  background: rgba(30,0,50,0.72);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(249,168,212,0.2);
+  box-shadow: 0 2px 24px rgba(236,72,153,0.15);
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+.nav-logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--pink);
+  text-shadow: 0 0 16px rgba(249,168,212,.7);
+  white-space: nowrap;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .25rem .5rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.8);
+  font-size: .72rem;
+  padding: .3rem .6rem;
+  border-radius: 20px;
+  transition: all .25s;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.nav-links a:hover {
+  background: rgba(249,168,212,0.25);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  font-size: 1.2rem;
+  padding: .3rem .7rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* =============================================
+   PAGES
+   ============================================= */
+.page {
+  display: none;
+  min-height: 100vh;
+  padding-top: 80px;
+  position: relative;
+  z-index: 1;
+  animation: pageFadeIn .6s ease forwards;
+}
+.page.active { display: block; }
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.page-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.page-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--pink);
+  text-align: center;
+  text-shadow: 0 0 32px rgba(249,168,212,.8);
+}
+.page-subtitle {
+  color: rgba(255,255,255,0.65);
+  font-size: .95rem;
+  text-align: center;
+  margin-top: -.8rem;
+}
+
+/* =============================================
+   GLASS CARD
+   ============================================= */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-bd);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform .3s, box-shadow .3s;
+}
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent);
+}
+.big-card {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+/* =============================================
+   GLOW TEXT
+   ============================================= */
+.glow-text {
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+@keyframes glowPulse {
+  0%   { text-shadow: 0 0 20px rgba(249,168,212,.6), 0 0 40px rgba(249,168,212,.3); }
+  100% { text-shadow: 0 0 40px rgba(249,168,212,1), 0 0 80px rgba(196,181,253,.5); }
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink-deep), var(--lavender-d));
+  color: white;
+  border: none;
+  padding: .85rem 2.2rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(236,72,153,.4);
+  transition: all .25s;
+  letter-spacing: .5px;
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 32px rgba(236,72,153,.6);
+}
+.btn-primary:active { transform: scale(.97); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.14);
+  color: white;
+  border: 1.5px solid rgba(255,255,255,.3);
+  padding: .7rem 1.6rem;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: .9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all .25s;
+  backdrop-filter: blur(8px);
+}
+.btn-secondary:hover {
+  background: rgba(249,168,212,.2);
+  border-color: var(--pink);
+  transform: translateY(-2px);
+}
+
+.btn-emergency {
+  background: linear-gradient(135deg, #ff6fa8, #c84b9e, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 1.5rem 3rem;
+  border-radius: 60px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 auto;
+  box-shadow: 0 8px 40px rgba(236,72,153,.5);
+  animation: emergencyPulse 2s ease-in-out infinite;
+  transition: transform .2s;
+  letter-spacing: 1px;
+}
+.btn-emergency:hover {
+  transform: scale(1.06);
+  animation-play-state: paused;
+}
+@keyframes emergencyPulse {
+  0%, 100% { box-shadow: 0 8px 40px rgba(236,72,153,.5); }
+  50%       { box-shadow: 0 12px 60px rgba(139,92,246,.8), 0 0 0 12px rgba(236,72,153,.12); }
+}
+.btn-icon { font-size: 1.8rem; animation: heartBeat 1.2s infinite; }
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.25); }
+}
+
+.btn-laugh {
+  background: linear-gradient(135deg, rgba(249,168,212,.3), rgba(196,181,253,.3));
+  color: white;
+  border: 1.5px solid rgba(249,168,212,.4);
+  padding: .8rem 1.4rem;
+  border-radius: 50px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .25s;
+  font-family: 'Poppins', sans-serif;
+  backdrop-filter: blur(8px);
+}
+.btn-laugh:hover {
+  background: linear-gradient(135deg, rgba(249,168,212,.5), rgba(196,181,253,.5));
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 6px 20px rgba(236,72,153,.3);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff4d6d, #c9184a);
+  color: white;
+  border: none;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  cursor: pointer;
+  animation: dangerShake 4s ease-in-out infinite;
+  box-shadow: 0 6px 30px rgba(201,24,74,.5);
+  font-family: 'Poppins', sans-serif;
+  transition: transform .2s;
+}
+.btn-danger:hover { animation-play-state: paused; transform: scale(1.05); }
+@keyframes dangerShake {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  91%           { transform: rotate(-3deg); }
+  93%           { transform: rotate(3deg); }
+  95%           { transform: rotate(-2deg); }
+  97%           { transform: rotate(2deg); }
+}
+
+/* =============================================
+   PAGE 1 — WELCOME
+   ============================================= */
+.slideshow-container {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  filter: brightness(.45) saturate(1.2);
+}
+.slide.active { opacity: 1; }
+.slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15,0,25,.4), rgba(15,0,25,.75));
+}
+
+.welcome-content {
+  max-width: 720px;
+  margin: 6vh auto 0;
+  text-align: center;
+  padding: 3rem 2.5rem;
+}
+.welcome-badge {
+  font-size: .8rem;
+  color: var(--peach);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  opacity: .9;
+}
+.welcome-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 8vw, 5rem);
+  color: white;
+  text-shadow: 0 0 40px rgba(249,168,212,.9);
+  margin-bottom: .5rem;
+  line-height: 1.1;
+}
+.welcome-sub {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: rgba(255,255,255,.85);
+  margin-bottom: .5rem;
+}
+.welcome-text {
+  color: rgba(255,255,255,.65);
+  font-size: .9rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.daily-bits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+.daily-bit {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 16px;
+  padding: .8rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  flex: 1;
+  min-width: 180px;
+  max-width: 220px;
+  text-align: left;
+}
+.daily-label {
+  font-size: .72rem;
+  color: var(--pink);
+  font-weight: 700;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.daily-val {
+  font-size: .8rem;
+  color: rgba(255,255,255,.8);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.btn-enter {
+  font-size: 1.2rem;
+  padding: 1rem 3rem;
+  margin-top: .5rem;
+  animation: enterPulse 2.5s ease-in-out infinite;
+}
+@keyframes enterPulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(236,72,153,.4); }
+  50%       { box-shadow: 0 8px 48px rgba(196,181,253,.7); }
+}
+
+/* Typewriter */
+.typewriter { overflow: hidden; white-space: nowrap; border-right: 3px solid var(--pink); animation: typing 2s steps(12,end) forwards, blink .7s step-end infinite; }
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* =============================================
+   PAGE 2 — HAPPINESS
+   ============================================= */
+.happiness-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem;
+}
+.message-display {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: white;
+  text-align: center;
+  line-height: 1.6;
+  min-height: 60px;
+  opacity: 0;
+  transition: opacity .5s;
+  padding: 0 1rem;
+}
+.message-display.visible { opacity: 1; }
+.mini-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(249,168,212,.5);
+  animation: floatBob 3s ease-in-out infinite;
+}
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.extra-btns {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* =============================================
+   PAGE 3 — COMPLIMENTS
+   ============================================= */
+.compliment-rose-img {
+  margin: 0 auto 1.5rem;
+}
+.circle-photo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(249,168,212,.5);
+  box-shadow: 0 0 30px rgba(249,168,212,.4);
+  animation: floatBob 4s ease-in-out infinite;
+}
+.compliment-display {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  color: white;
+  text-align: center;
+  min-height: 80px;
+  line-height: 1.5;
+  margin: 1.5rem 0;
+  transition: all .5s;
+  text-shadow: 0 0 20px rgba(249,168,212,.5);
+}
+.compliment-placeholder {
+  color: rgba(255,255,255,.5);
+  font-size: 1.1rem;
+}
+
+/* =============================================
+   PAGE 4 — LAUGH LAB
+   ============================================= */
+.laugh-gif-wrapper {
+  max-width: 420px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 0;
+}
+.funny-gif {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 20px;
+}
+.laugh-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  justify-content: center;
+  width: 100%;
+}
+.joke-display {
+  max-width: 600px;
+  width: 100%;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  color: white;
+  text-align: center;
+  line-height: 1.7;
+  min-height: 60px;
+  opacity: 0;
+  transition: opacity .5s;
+}
+.joke-display.visible { opacity: 1; }
+
+/* =============================================
+   PAGE 5 — CERTIFICATE
+   ============================================= */
+.certificate-wrapper {
+  max-width: 600px;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,215,0,.08), rgba(255,215,0,.04));
+  border: 2px solid rgba(255,215,0,.3);
+}
+.cert-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.cert-border {
+  padding: 3rem 2.5rem;
+  border: 2px solid rgba(255,215,0,.25);
+  margin: 1.5rem;
+  border-radius: 16px;
+  position: relative;
+  z-index: 1;
+}
+.cert-crown {
+  text-align: center;
+  margin-bottom: -1rem;
+  position: relative;
+  z-index: 2;
+}
+.crown-anim {
+  font-size: 4rem;
+  display: inline-block;
+  animation: crownFloat 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255,215,0,.8));
+}
+@keyframes crownFloat {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%      { transform: translateY(-12px) rotate(5deg); }
+}
+.cert-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: .85rem;
+  letter-spacing: 3px;
+  color: rgba(255,215,0,.8);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.cert-sub {
+  color: rgba(255,255,255,.6);
+  font-size: .9rem;
+  margin-bottom: .3rem;
+}
+.cert-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  background: linear-gradient(135deg, #ffd700, #ffaa00, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(255,215,0,.6));
+  margin: .5rem 0;
+  line-height: 1;
+}
+.cert-desc {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.cert-divider {
+  color: rgba(255,215,0,.5);
+  font-size: 1rem;
+  margin: 1rem 0;
+  letter-spacing: 4px;
+}
+.cert-details {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.cert-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .2rem;
+}
+.cert-label {
+  font-size: .75rem;
+  color: rgba(255,215,0,.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.cert-val {
+  color: white;
+  font-size: .95rem;
+  font-weight: 500;
+}
+.cert-seal {
+  font-size: 2.5rem;
+  display: block;
+  margin: 1rem auto .5rem;
+  filter: drop-shadow(0 0 12px rgba(255,100,150,.7));
+}
+.cert-signature {
+  font-family: 'Dancing Script', cursive;
+  color: rgba(255,215,0,.7);
+  font-size: 1rem;
+}
+
+/* =============================================
+   PAGE 6 — CONFIDENCE
+   ============================================= */
+.confidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.conf-card {
+  padding: 1.5rem;
+  font-size: .95rem;
+  color: rgba(255,255,255,.9);
+  line-height: 1.7;
+  animation: cardFadeIn .6s ease both;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.conf-photo-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.conf-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid rgba(249,168,212,.5);
+  box-shadow: 0 0 40px rgba(249,168,212,.4);
+  animation: floatBob 4s ease-in-out infinite;
+}
+
+/* =============================================
+   PAGE 7 — FRIENDSHIP
+   ============================================= */
+.friendship-card {
+  max-width: 700px;
+}
+.friendship-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.friendship-inner p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.88);
+  line-height: 1.7;
+  font-style: italic;
+  border-left: 3px solid rgba(249,168,212,.5);
+  padding-left: 1rem;
+}
+.friendship-photos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.friend-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(249,168,212,.4);
+  box-shadow: 0 4px 20px rgba(249,168,212,.3);
+  transition: transform .3s;
+}
+.friend-photo:hover { transform: scale(1.1) rotate(3deg); }
+.friendship-sig {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: var(--pink);
+  text-shadow: 0 0 16px rgba(249,168,212,.6);
+}
+
+/* =============================================
+   PAGE 8 — BEAUTY
+   ============================================= */
+.page-beauty {
+  position: relative;
+  overflow: hidden;
+}
+.moon-bg {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+.moon-glow {
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,240,180,.15) 0%, rgba(196,181,253,.08) 40%, transparent 70%);
+  animation: moonGlow 5s ease-in-out infinite alternate;
+  filter: blur(30px);
+}
+@keyframes moonGlow {
+  0%   { transform: scale(.95); opacity: .7; }
+  100% { transform: scale(1.05); opacity: 1; }
+}
+.moon-particles { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.moon-particle {
+  position: absolute;
+  font-size: 1rem;
+  animation: moonFloat linear infinite;
+  opacity: 0;
+}
+@keyframes moonFloat {
+  0%   { transform: translateY(110vh); opacity: 0; }
+  10%  { opacity: .6; }
+  90%  { opacity: .4; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+.beauty-inner { position: relative; z-index: 1; }
+.beauty-gif-wrapper {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(249,168,212,.5);
+  box-shadow: 0 0 50px rgba(249,168,212,.5), 0 0 100px rgba(196,181,253,.3);
+  animation: floatBob 5s ease-in-out infinite;
+}
+.beauty-gif { width: 100%; height: 100%; object-fit: cover; }
+.beauty-card {
+  max-width: 680px;
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,240,180,.3) !important;
+}
+.beauty-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  background: linear-gradient(135deg, #ffd700, #ffb6c1, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+.beauty-text {
+  color: rgba(255,255,255,.85);
+  font-size: 1.05rem;
+  line-height: 2;
+  font-style: italic;
+}
+.beauty-glow-ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255,215,0,.3), rgba(196,181,253,.3), rgba(249,168,212,.3));
+  z-index: -1;
+  animation: ringRotate 6s linear infinite;
+  filter: blur(8px);
+}
+@keyframes ringRotate {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* =============================================
+   PAGE 9 — SECRET
+   ============================================= */
+.secret-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+}
+.secret-result {
+  color: white;
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  min-height: 60px;
+  line-height: 1.6;
+}
+.achievements {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+.achievement {
+  font-size: 1.1rem;
+  color: var(--peach);
+  font-weight: 600;
+  animation: achieveSlide .4s ease both;
+}
+@keyframes achieveSlide {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes screenShake {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  10%      { transform: translate(-6px,3px) rotate(-1deg); }
+  20%      { transform: translate(6px,-3px) rotate(1deg); }
+  30%      { transform: translate(-4px,6px) rotate(-.5deg); }
+  40%      { transform: translate(4px,-6px) rotate(.5deg); }
+  50%      { transform: translate(-2px,2px); }
+  60%      { transform: translate(2px,-2px); }
+  70%      { transform: translate(-1px,1px); }
+}
+body.shake { animation: screenShake .6s ease; }
+
+/* =============================================
+   PAGE 10 — HAPPY JAR
+   ============================================= */
+.jar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2.5rem;
+  max-width: 500px;
+}
+.jar-visual {
+  cursor: pointer;
+  transition: transform .3s;
+}
+.jar-visual:hover { transform: scale(1.05); }
+.jar-lid {
+  font-size: 5rem;
+  animation: jarWobble 3s ease-in-out infinite;
+  display: block;
+  text-align: center;
+}
+@keyframes jarWobble {
+  0%, 100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+.jar-note {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  min-height: 60px;
+  line-height: 1.6;
+  transition: opacity .5s;
+  opacity: 0;
+  padding: 1rem;
+}
+.jar-note.visible { opacity: 1; }
+
+/* =============================================
+   PAGE 11 — FINAL
+   ============================================= */
+.page-final {
+  position: relative;
+  overflow: hidden;
+}
+.final-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.final-heart {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: finalHeartRise linear infinite;
+  opacity: 0;
+}
+@keyframes finalHeartRise {
+  0%   { transform: translateY(110vh) scale(.5); opacity: 0; }
+  10%  { opacity: .8; }
+  90%  { opacity: .5; }
+  100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+}
+.final-inner { position: relative; z-index: 1; }
+.final-card {
+  max-width: 720px;
+  text-align: center;
+  padding: 3rem 2.5rem;
+}
+.final-rose {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: roseGlow 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 20px rgba(249,168,212,.8));
+}
+@keyframes roseGlow {
+  0%   { filter: drop-shadow(0 0 20px rgba(249,168,212,.6)); }
+  100% { filter: drop-shadow(0 0 40px rgba(249,168,212,1)); }
+}
+.final-heading {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  background: linear-gradient(135deg, var(--pink), var(--lavender), var(--peach));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-shadow: none;
+}
+.final-message {
+  color: rgba(255,255,255,.88);
+  font-size: 1.05rem;
+  line-height: 2;
+  text-align: center;
+}
+.final-message p { margin: .1rem 0; }
+.final-big {
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  color: var(--pink) !important;
+}
+.final-queen {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.8rem !important;
+  color: rgba(255,215,0,1) !important;
+  text-shadow: 0 0 20px rgba(255,215,0,.6) !important;
+}
+.final-sig {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: var(--pink);
+  text-shadow: 0 0 20px rgba(249,168,212,.7);
+  margin: 2rem 0 1.5rem;
+}
+.final-photo-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.final-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(249,168,212,.4);
+  box-shadow: 0 0 20px rgba(249,168,212,.3);
+  animation: floatBob 4s ease-in-out infinite;
+}
+.final-photo:nth-child(2) { animation-delay: .5s; }
+.final-photo:nth-child(3) { animation-delay: 1s; }
+
+/* =============================================
+   CONFETTI CANVAS
+   ============================================= */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-basis: 100%; }
+  .nav-links.open { display: flex; flex-direction: column; gap: .2rem; padding: .5rem 0; }
+  .nav-toggle { display: block; }
+  .nav-links a { font-size: .85rem; padding: .5rem .8rem; }
+
+  .welcome-content { margin: 2vh 1rem 0; padding: 2rem 1.2rem; }
+  .daily-bits { flex-direction: column; align-items: center; }
+  .daily-bit { max-width: 100%; min-width: auto; width: 100%; }
+
+  .btn-emergency { font-size: 1.1rem; padding: 1.1rem 2rem; }
+  .glass-card { padding: 1.5rem 1rem; }
+  .cert-border { padding: 1.5rem 1rem; margin: .8rem; }
+  .confidence-grid { grid-template-columns: 1fr; }
+  .friendship-photos { gap: .5rem; }
+  .friend-photo { width: 80px; height: 80px; }
+  .final-photo { width: 85px; height: 85px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
